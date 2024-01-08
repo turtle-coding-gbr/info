@@ -1,0 +1,418 @@
+<head>
+<meta charset="utf-8">
+<link rel="icon" type="image/x-icon" href="/imgs/favicon.png">
+<title>Turtle Coding GbR</title>
+<!--Search Engine-->
+<meta name="description" content="Turtle Coding GbR">
+<script type="application/ld+json">
+	{
+		"@context" : "https://info.jgkanzcodinggbr.repl.co/",
+		"@type" : "WebSite",
+		"name" : "Turtle Coding GbR",
+		"url" : "https://info.jgkanzcodinggbr.repl.co/"
+	}
+</script>
+<!--/Search Engine-->
+<script>
+const preSideContent = {
+	"/": "Home",
+	"/about": "Impressum",
+	"/contacts": "Kontakte",
+	"/datenschutz": "Datenschutz"
+};
+</script>
+<style>
+* {
+  box-sizing: border-box;
+	outline-style: none;
+}
+
+body {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  font-size: 20px;
+  font-family: cantarell;
+  text-align: center;
+  padding: 0;
+  margin: 0;
+	height: 100%;
+}
+.selectable {
+	-webkit-user-select: text;
+	-moz-user-select: text;
+	-ms-user-select: text;
+	user-select: text;
+}
+.text {
+	white-space: pre-wrap;
+	text-align: left;
+}
+content {
+  padding: 20px;
+  display: inline-block;
+}
+.content_table {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	padding: 0;
+	margin: 0;
+}
+.content_table tr td {
+	padding: 0;
+	margin: 0;
+}
+.content_table > tbody > tr:first-child > td:first-child {
+	vertical-align: top;
+	padding-top: 80px;
+}
+.content_table > tbody > tr:last-child > td {
+	vertical-align: bottom;
+	position: relative;
+}
+hidden {
+	display: none;
+}
+td {
+  vertical-align: center;
+}
+span {
+  font-weight: bold;
+  font-size: 30px;
+  display: inline-block;
+}
+label {
+  font-size: 25px;
+  display: inline-block;
+}
+img {
+	user-select: none;
+	-moz-user-select: none;
+	-webkit-user-drag: none;
+	-webkit-user-select: none;
+	pointer-events: none;
+}
+.infoBox {
+  width: 100%;
+  border-radius: 20px;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  box-sizing: border-box;
+  padding: 10px;
+  display: inline-block;
+}
+.downIcon {
+	position: relative;
+	display: inline-block;
+  width: 60px;
+  height: 60px;
+  border-radius: 10px;
+  padding: 5px;
+  margin-left: 5px;
+  margin-right: 5px;
+  margin-top: 0;
+  margin-bottom: 0;
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.2), 0 2px 5px 0 rgba(0, 0, 0, 0.19);
+}
+.downIcon:active {
+	box-shadow: inset 0 1px 2px 0 rgba(0, 0, 0, 0.2), 0 2px 5px 0 rgba(0, 0, 0, 0.19);
+}
+.downIcon img {
+  width: 50px;
+  height: 50px;
+  border-radius: 10px;
+}
+a {
+  color: #62c662;
+  text-decoration: none;
+}
+a:hover {
+  text-decoration: underline;
+}
+</style>
+<style>
+.bg {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(20deg, #f5f7fa, #e8f8fc);
+  z-index: -1;
+}
+
+.bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 80px;
+  border-radius: 0;
+  background: linear-gradient(20deg, #85B385, #62c662);
+  backdrop-filter: blur(10px);
+  //padding-top: 2px;
+  font-size: 30px;
+  font-weight: bold;
+  padding: 0 5px;
+  z-index: 100;
+}
+.barFloating {
+  animation: barFloatingAni 1s forwards;
+}
+.barNotFloating {
+  animation: barNotFloatingAni 1s forwards;
+}
+.bar button[class=menuIcon] {
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.2), 0 2px 5px 0 rgba(0, 0, 0, 0.19);
+}
+.bar button:active {
+	box-shadow: inset 0 1px 2px 0 rgba(0, 0, 0, 0.2), inset 0 2px 5px 0 rgba(0, 0, 0, 0.19);
+}
+.barFloating button[class=menuIcon] {
+  box-shadow: none;
+}
+.barFloating button:active {
+	box-shadow: none;
+}
+.menuIcon {
+  display: inline-block;
+  padding: 8px 10px;
+  border-radius: 10px;
+  backdrop-filter: blur(10px);
+  background: none;
+  border: none;
+}
+.menuIcon strich {
+  width: 35px;
+	height: 5px;
+  background-color: black;
+  margin: 6px 0;
+  display: block;
+}
+@keyframes barNotFloatingAni {
+  to {
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 80px;
+    border-radius: 0;
+    padding: 0 5px;
+  }
+  from {
+    top: 10px;
+    left: 2%;
+    width: 96%;
+    height: 70px;
+    border-radius: 30px;
+    padding: 0 10px;
+  }
+}
+@keyframes barFloatingAni {
+  from {
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 80px;
+    border-radius: 0;
+    padding: 0 0px;
+  }
+  to {
+    top: 10px;
+    left: 2%;
+    width: 96%;
+    height: 70px;
+    border-radius: 30px;
+    padding: 0px 5px;
+  }
+}
+.bar table {
+  width: 100%;
+  height: 100%;
+  text-align: center;
+}
+.bar table td {
+  //width: 33.33%;
+}
+.barElevator {
+  width: 100%;
+  height: 80px;
+  background: none;
+}
+.sideUp {
+  position: absolute;
+  top: 100%;
+  left: 0.5%;
+  background: none;
+  border-radius: 20px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  backdrop-filter: blur(10px);
+  padding: 20px 30px;
+  text-align: left;
+  opacity: 0.0;
+  display: none;
+}
+.sideUp *[class=iBg] {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: grey;
+  border-radius: 20px;
+  opacity: 0.8;
+  z-index: -1;
+}
+.sideUp:after {
+  content: "";
+  position: absolute;
+  z-index: 1;
+  display: block;
+  width: 0;
+  top: -15px;
+  left: -15px;
+  margin-left: 14%;
+  border-style: solid;
+  border-width: 0 15px 15px;
+  border-color: grey transparent;
+  opacity: 0.8;
+}
+.sideUp a {
+  font-size: 26px;
+  font-weight: bold;
+  color: #62c662;
+  text-decoration: none;
+  padding: 10px 15px;
+}
+.sideUp a:hover {
+  text-decoration: underline;
+}
+.showSideUp {
+  display: block;
+  animation: showSideUpAni 1s forwards;
+}
+.hideSideUp {
+  animation: hideSideUpAni 1s forwards;
+}
+@keyframes showSideUpAni {
+  from {
+    opacity: 0.0;
+  }
+  to {
+    opacity: 1.0;
+  }
+}
+@keyframes hideSideUpAni {
+  from {
+    opacity: 1.0;
+  }
+  to {
+    opacity: 0.0;
+  }
+}
+</style>
+<div class="bg"></div>
+<!--<div class="barElevator"></div>-->
+<div id="bar" class="bar">
+  <table>
+    <tr>
+      <td style="text-align: left; position: relativ;">
+        <button id="menuIcon" class="menuIcon" onclick="toggleSideup()">
+          <strich></strich>
+          <strich></strich>
+          <strich></strich>
+        </button>
+        <div id="sideUp" class="sideUp">
+          <div class="iBg"></div>
+          <div id="sidebar"></div>
+        </div>
+      </td>
+      <td style="width: 100%;">Turtle Coding GbR</td>
+      <td style="text-align: right; position: relativ;">
+        <div class="menuIcon" style="visibility: hidden;">
+          <strich></strich>
+          <strich></strich>
+          <strich></strich>
+        </div>
+      </td>
+    </tr>
+  </table>
+</div>
+<script>
+const sideUp = document.getElementById("sideUp");
+const sideUpButton = document.getElementById("menuIcon");
+var sideUpShown = false;
+function toggleSideup() {
+  if (!sideUpShown) {
+    sideUp.style.display = "block";
+    sideUp.classList.remove("hideSideUp");
+    sideUp.classList.add("showSideUp");
+    sideUpShown = true;
+  } else {
+    closeSideup();
+  }
+}
+function closeSideup() {
+  sideUp.classList.remove("showSideUp");
+  sideUp.classList.add("hideSideUp");
+  setTimeout(() => {
+    if (!sideUpShown) {
+      sideUp.style.display = "none";
+    }
+  }, 1000);
+  sideUpShown = false;
+}
+window.addEventListener("click", function(event) {
+  if (!sideUp.contains(event.target) && !sideUpButton.contains(event.target)) {
+    closeSideup();
+  }
+});
+
+const getSideContent = (type) => typeof sideContent == type ? sideContent: undefined;
+function buildSideUp1() {
+	const obj = getSideContent("object") ?? {
+		"/": "home"
+	};
+	let res = "";
+	for (const i in obj) {
+		if (res.length > 0) res += "<br>";
+		res += `<a href="${i}">${obj[i]}</a>`;
+	}
+	document.getElementById("sidebar").innerHTML = res;
+}
+function buildSideUp2() {
+	const obj = preSideContent;
+	const outline = getSideContent("string") ?? "none";
+	let res = "";
+	for (const i in obj) {
+		const val = obj[i];
+		if (outline == i.toLowerCase()) continue;
+		if (res.length > 0) res += "<br>";
+		res += `<a href="${i}">${val}</a>`;
+	}
+	document.getElementById("sidebar").innerHTML = res;
+}
+
+const bar = document.getElementById("bar");
+window.addEventListener("scroll", function(event) {
+	const y = document.documentElement.scrollTop;
+	if (y > 10) {
+		bar.classList.remove("barNotFloating");
+		bar.classList.add("barFloating");
+	} else if (y == 0) {
+		bar.classList.remove("barFloating");
+		bar.classList.add("barNotFloating");
+	}
+});
+
+setTimeout(buildSideUp2, 1);
+	
+</script>
+<script>
+const getId = (id) => document.getElementById(id);
+const link = (url) => location.href = url;
+</script>
+</head>
